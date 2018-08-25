@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+<script type="text/babel">
+//갤러리에 사용될 이미지 url
+var gallery=[
+	{
+		"title":"Okinawa01",
+		"src":"https://www.japantimes.co.jp/wp-content/uploads/2017/11/n-okinawa-a-20171122-870x579.jpg"
+	},{
+		"title":"Okinawa02",
+		"src":"https://s1.it.atcdn.net/wp-content/uploads/2017/03/iStock-522032391-860x574.jpg"
+	},{
+		"title":"Okinawa03",
+		"src":"https://promo.chanbrothers.com/okinawa/wp-content/uploads/sites/44/2016/01/Beach-Snorkel-Okinawa-iStock-BTL-only-600x400.jpg"
+	},{
+		"title":"Okinawa04",
+		"src":"https://promo.chanbrothers.com/okinawa/wp-content/uploads/sites/44/2016/01/Cape-Manzamo-Okinawa-iStock-BTL-only-600x400.jpg"
+	},{
+		"title":"Okinawa05",
+		"src":"http://www.thetraveltester.com/wp-content/uploads/2016/05/japan-islands-yaeyama-okinawa-baras-island.jpg"
+	}
+]
+var tagArray=[];
+
+//문서가 로드되면
+$(function(){
+	showTag();
+});
+
+function showTag(){
+	ReactDOM.render(getDOM(),document.getElementById("stage"));
+}
+
+function getDOM(){
+	/*바벨에서 css를 json으로 처리가능
+	표기방법1. css변수값을 쌍따옴표로 작성하는 방법:기존 css방법 그대로 
+	표기방법2. css변수값을 쌍따옴표로 작성하지 않는 방법: jquery에서 css사용법과 동일
+	fontSize:"20px",
+	"font-size":"20px",
+	*/
+	var css={
+		width:"200px",
+		border:"2px solid pink",
+		float:"left"
+	};
+
+	//return시킬 태그를 여기서 반복문으로 작성
+	for(var i=0;i<gallery.length;i++){
+	tagArray.push(<div style={css}><img src={gallery[i].src} width="200px"/><h3>{gallery[i].title}</h3></div>);
+	}
+	return(
+		tagArray
+	);
+}
+
+</script>
+</head>
+<body>
+	<div id="stage"></div>
+</body>
+</html>
+
+

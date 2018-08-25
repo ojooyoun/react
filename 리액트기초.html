@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+<script type="text/babel">
+/*	1초마다 숫자를 증가시키기
+	화면갱신이 되기 위해서는 내부적으로 많은 dom 객체들의 변경이 일어나고 이 변경 작업 규모가 클 경우 성능에 많은 영향을 미친다.*/
+$(function(){
+	
+	gameLoop();
+});
+//render()메서드안에서 디자인을 코딩하는 것은 불편하므로, 함수로 정의
+function getDOM(){
+	return(
+			<div>
+				<h1>{n}</h1>
+				<h1>{n}</h1>
+			</div>
+	);	
+}
+
+function gameLoop(){
+	//jsx를 이용하면 javascript코드내에서 태그를 사용할 수 있다.
+	//ReactDom객체의 render메서드는 인수 2개를 넘김:1.어떤태그를 생성할지(dom)요소, 2.어디에 부착할지
+	n++;
+	ReactDom.render(getDOM(),document.getElementById("stage"));
+	setTimeout("gmaeLoop()",1000);
+}
+</script>
+</head>
+<body>
+	<div id="stage"></div>
+</body>
+</html>
